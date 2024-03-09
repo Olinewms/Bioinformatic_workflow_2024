@@ -1,4 +1,5 @@
 # Mapping green SUP edges_14743 and edge_14745, and purple edge_14344, to purple edge_4556 (TrRED LEAF-presence allele)
 vulcan -r ../purple/all_purple_SUP_called_merged/flye_assembly_purple/misc_edges/edge_4556_purple_SUP_assembly.fasta -i Green_SUP_edges_14743_14745_purple_edge_14344.fasta -w ../vulcan_alignment_of_green_alleles_to_purple_edge_4556/ -o alignment_of_green_ROIs_against_purple_edge_4556 -t 64 -any
 
+
   
