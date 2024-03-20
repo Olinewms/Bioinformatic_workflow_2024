@@ -1,5 +1,8 @@
 # Mapping green SUP edges_14743 and edge_14745, and purple edge_14344, to purple edge_4556 (TrRED LEAF-presence allele)
 vulcan -r ../purple/all_purple_SUP_called_merged/flye_assembly_purple/misc_edges/edge_4556_purple_SUP_assembly.fasta -i Green_SUP_edges_14743_14745_purple_edge_14344.fasta -w ../vulcan_alignment_of_green_alleles_to_purple_edge_4556/ -o alignment_of_green_ROIs_against_purple_edge_4556 -t 64 -any
 
+# This didn't work
 
-  
+# So I decided to map all four TrRED LEAF-absent alleles from Green F2 Flye assemble (edges: ), 
+# and all the two TrRED LEAF-absent alleles from the T.pal subgenome of the Purple F2 Flye assembly, to Purple edge_14344.
+# This is so I can look for variants that are unique to the two T.occ Green green alleles and the Purple T.occ TrRED LEAF-absent allele 
