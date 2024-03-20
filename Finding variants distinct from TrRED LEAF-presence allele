@@ -6,3 +6,5 @@ vulcan -r ../purple/all_purple_SUP_called_merged/flye_assembly_purple/misc_edges
 # So I decided to map all four TrRED LEAF-absent alleles from Green F2 Flye assemble (edges: ), 
 # and all the two TrRED LEAF-absent alleles from the T.pal subgenome of the Purple F2 Flye assembly, to Purple edge_14344.
 # This is so I can look for variants that are unique to the two T.occ Green green alleles and the Purple T.occ TrRED LEAF-absent allele 
+
+vulcan -r [REFERENCE FASTA] -i [MAPPING FASTA 1] [MAPPING FASTA 2] -w [WORKING DIRECTORY] -o [NAME OF OUTPUT ALIGNMENT] -t 64 -any
