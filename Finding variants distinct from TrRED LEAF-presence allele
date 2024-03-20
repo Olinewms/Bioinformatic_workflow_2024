@@ -8,3 +8,5 @@ vulcan -r ../purple/all_purple_SUP_called_merged/flye_assembly_purple/misc_edges
 # This is so I can look for variants that are unique to the two T.occ Green green alleles and the Purple T.occ TrRED LEAF-absent allele 
 
 vulcan -r [REFERENCE FASTA] -i [MAPPING FASTA 1] [MAPPING FASTA 2] -w [WORKING DIRECTORY] -o [NAME OF OUTPUT ALIGNMENT] -t 64 -any
+vulcan -r NODE_edge_14344_Purple_Tocc_with_second_draft_screening_primers.fasta -i NODE_edge_13191_Purple_Tpal_extraction_upstream_and_inc_ADP.fasta NODE_edge_14743_Green_Tocc_extraction_upstream_and_inc_ADP.fasta NODE_edge_14745_Green_Tocc_extraction_upstream_and_inc_ADP_reversed.fasta NODE_edge_25971_Green_Tpal_extraction_upstream_and_inc_ADP_reversed.fasta NODE_edge_25974_Green_Tpal_extraction_upstream_and_inc_ADP_reversed.fasta NODE_edge_4556_Purple_Tocc_extraction_upstream_and_inc_ADP_reversed.fasta NODE_edge_4305_Purple_Tpal_extraction_upstream_and_inc_ADP.fasta -w ./hunting_TrREDabsent_alleles_in_longread_assemblies/ -o mapping_all_upstream_and_inc_ADP_to_Purple_edge_14344 -t 64 -any
+
