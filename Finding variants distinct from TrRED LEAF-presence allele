@@ -12,4 +12,10 @@ vulcan -r NODE_edge_14344_Purple_Tocc_with_second_draft_screening_primers.fasta 
 
 # This also wasn't that informative
 
+blat [REFERENCE/SUBJECT FASTA] [QUERY FASTA] Blat_output.psl
+
+REF=reffasta.fa
+QUERY=queryfasta.fa
+RESULT=outputbase
+blat $REF $QUERY $RESULT.pslx -out=pslx -noTrimA -extendThroughN && psl2sam.pl $RESULT.pslx | python add_seq_info_to_psl2sam.py $QUERY | samtools view -bST $REF - > $RESULT.bam && samtools sort $RESULT.bam $RESULT.sorted && samtools index $RESULT.sorted.bam
 
