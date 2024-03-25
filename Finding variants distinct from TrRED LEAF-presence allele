@@ -23,5 +23,17 @@ blat $REF $QUERY $RESULT.pslx -out=pslx -noTrimA -extendThroughN && psl2sam.pl $
 
 
 # Then I decided to map all SUP-called reads (green and purple longread data) to Purple Flye-assembled edge_14344, with the presumption that the ND4-intergenic region junction in this edge represents the TrRED LEAF deletion 
+vulcan -r ../purple/all_purple_SUP_called_merged/flye_assembly_purple/misc_edges/edge_14344_purple_SUP_assembly.fasta -i ../green/all_green_SUP_called_merged/all_green_SUP_called_passed_merged.fastq.gz -w ./ -o vulcan_mapping_green_SUPreads_to_purple_edge14344 -t 64 -ont
+# Returned the following error; 
+2024-03-25 15:58:15,460 - root - ERROR - work path already exists!
+Traceback (most recent call last):
+  File "/Volumes/archive/userdata/student_users/olivernewman/.conda/envs/vulcan/bin/vulcan", line 302, in main
+    os.mkdir(WORK_DIR)
+FileExistsError: [Errno 17] File exists: './'
 
-vulcan -r [REFERENCE FASTA] -i [MAPPING FASTA 1] [MAPPING FASTA 2] -w [WORKING DIRECTORY] -o [NAME OF OUTPUT ALIGNMENT] -t 64 -any
+# But then continued mapping reads... It was probably just due to the fact that I specified the working dir as ./ (-w ./)
+
+# Then I needed to make a .vcf file for these two .bam files
+
+cuteSV ALIGNMENT.bam ~/2023/Reference_genomes/Trifolium_repens/UTM_Trep_v1.0_hap1/ncbi_dataset/data/GCA_030914245.1/GCA_030914245.1_UTM_Trep_v1.0_hap1_genomic.fna output_cuteSV_green_against_UTM_hap1 ./ --threads 64 --max_cluster_bias_INS 100 --diff_ratio_merging_INS 0.3 --max_cluster_bias_DEL 100 --diff_ratio_merging_DEL 0.3samtools sort vulcan_green_SUP_against_UTM_Trepv1hap1_90.bam > vulcan_green_SUP_against_UTM_Trepv1hap1_90_sorted.bam
+cuteSV <sorted.bam> <reference.fa> <output.vcf> <work_dir> --threads 64 --max_cluster_bias_INS 100 --diff_ratio_merging_INS 0.3 --max_cluster_bias_DEL 100 --diff_ratio_merging_DEL 0.3samtools sort vulcan_green_SUP_against_UTM_Trepv1hap1_90.bam > vulcan_green_SUP_against_UTM_Trepv1hap1_90_sorted.bam
