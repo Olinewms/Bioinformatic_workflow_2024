@@ -19,3 +19,9 @@ QUERY=queryfasta.fa
 RESULT=outputbase
 blat $REF $QUERY $RESULT.pslx -out=pslx -noTrimA -extendThroughN && psl2sam.pl $RESULT.pslx | python add_seq_info_to_psl2sam.py $QUERY | samtools view -bST $REF - > $RESULT.bam && samtools sort $RESULT.bam $RESULT.sorted && samtools index $RESULT.sorted.bam
 
+# This didn't work
+
+
+# Then I decided to map all SUP-called reads (green and purple longread data) to Purple Flye-assembled edge_14344, with the presumption that the ND4-intergenic region junction in this edge represents the TrRED LEAF deletion 
+
+vulcan -r [REFERENCE FASTA] -i [MAPPING FASTA 1] [MAPPING FASTA 2] -w [WORKING DIRECTORY] -o [NAME OF OUTPUT ALIGNMENT] -t 64 -any
