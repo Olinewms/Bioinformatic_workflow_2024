@@ -23,15 +23,8 @@ blat $REF $QUERY $RESULT.pslx -out=pslx -noTrimA -extendThroughN && psl2sam.pl $
 
 
 # Then I decided to map all SUP-called reads (green and purple longread data) to Purple Flye-assembled edge_14344, with the presumption that the ND4-intergenic region junction in this edge represents the TrRED LEAF deletion 
-vulcan -r ../purple/all_purple_SUP_called_merged/flye_assembly_purple/misc_edges/edge_14344_purple_SUP_assembly.fasta -i ../green/all_green_SUP_called_merged/all_green_SUP_called_passed_merged.fastq.gz -w ./ -o vulcan_mapping_green_SUPreads_to_purple_edge14344 -t 64 -ont
-# Returned the following error; 
-2024-03-25 15:58:15,460 - root - ERROR - work path already exists!
-Traceback (most recent call last):
-  File "/Volumes/archive/userdata/student_users/olivernewman/.conda/envs/vulcan/bin/vulcan", line 302, in main
-    os.mkdir(WORK_DIR)
-FileExistsError: [Errno 17] File exists: './'
-
-# But then continued mapping reads... It was probably just due to the fact that I specified the working dir as ./ (-w ./)
+vulcan -r ../purple/all_purple_SUP_called_merged/flye_assembly_purple/misc_edges/edge_14344_purple_SUP_assembly.fasta -i ../green/all_green_SUP_called_merged/all_green_SUP_called_passed_merged.fastq.gz -w ./green -o vulcan_mapping_green_SUPreads_to_purple_edge14344 -t 64 -ont
+vulcan -r ../purple/all_purple_SUP_called_merged/flye_assembly_purple/misc_edges/edge_14344_purple_SUP_assembly.fasta -i ../purple/all_purple_SUP_called_merged/all_purple_SUP_called_passed_merged.fastq.gz -w ./purple -o vulcan_mapping_purple_SUPreads_to_purple_edge14344 -t 64 -ont
 
 # Then I needed to make a .vcf file for these two .bam files
 
