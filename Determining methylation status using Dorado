@@ -1,0 +1,4 @@
+# Converting nanopore fast5 data to pod5
+conda activate py39
+pip install pod5
+pod5 convert fast5 ./tmp_fast5_all/ --output ./tmp_pod5_all --one-to-one ./tmp_fast5_all
