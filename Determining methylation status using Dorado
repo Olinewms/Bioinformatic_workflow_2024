@@ -2,12 +2,16 @@
 conda activate py39
 pip install pod5
 
-# made temporary directories for copies of all the fast5 files
+# Made temporary directories for copies of all the fast5 files
 mkdir tmp_fast5
 mkdir tmp_pod5_all
 
-# then converted all fast5 copies to pod5:
-pod5 convert fast5 ./tmp_fast5_all/ --output ./tmp_pod5_all --one-to-one ./tmp_fast5_all
+# Then converted all fast5 copies to pod5
+pod5 convert fast5 ./tmp_fast5_oli_purple_011123_test2_2/ --output ./tmp_pod5_oli_purple_011123_test2_2 --one-to-one ./tmp_fast5_oli_purple_011123_test2_2 -t 64
+
+# Then basecall the new pod5 files
+# This will output a single fastq file for the entire run; so no need to merge/concatenate hundreds of individual fastq's
+dorado basecaller "MODEL NAME" ./INPUT_pod5/ --kit-name "NAME OF KIT" --device cuda:all --emit-fastq > output.fastq
 
 
 
