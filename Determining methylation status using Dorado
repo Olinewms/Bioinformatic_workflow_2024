@@ -1,3 +1,8 @@
+# This is where I need to put my pod5 folder(s):
+fakay048@aoraki-login ~
+$ cd /projects/health_sciences/bms/biochemistry/macknight_lab/oliver_stuff/
+
+
 # Converting nanopore fast5 data to pod5
 conda activate py39
 pip install pod5
