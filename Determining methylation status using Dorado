@@ -2,6 +2,71 @@
 fakay048@aoraki-login ~
 $ cd /projects/health_sciences/bms/biochemistry/macknight_lab/oliver_stuff/
 
+# This is an example of what your slurm .sh script should look like:
+########################################################################################################################################
+!/usr/bin/env bash
+
+# Job name
+SBATCH --job-name=dorado_rebasecall
+
+# Account name
+SBATCH --account=macknight
+
+# Partition
+SBATCH --partition=aoraki_gpu_A100
+
+# Number of tasks per partition
+SBATCH --ntasks-per-node=1
+
+# Number of GPUs e.g. 2
+SBATCH --gpus-per-node=1
+
+# Memory per GPU
+SBATCH --mem-per-gpu=64GB
+
+# Number of CPUs (e.g 16 cores)
+SBATCH --cpus-per-task=32
+
+# File to save stdout output
+SBATCH --output=slurm_%j.log
+
+# File to save stderr (Error logfile)
+SBATCH --error=slurm_%j.err
+
+# Email
+SBATCH --mail-user=ayodele.fakoya@postgrad.otago.ac.nz
+SBATCH --mail-type=END,FAIL
+
+# Time required to run job (hh:mm:ss)
+SBATCH --time=48:00:00
+
+# Commands go below
+
+## Purge pre-existing stuff
+module purge
+
+## Load the CUDA module
+module load cuda
+
+## create folder for outputs
+cd /projects/health_sciences/bms/biochemistry/macknight_lab2 
+OUT_DIR=$(echo "$(pwd)/dorado_demultiplex_bothends_v5.3")
+
+mkdir -p $OUT_DIR
+
+# Set the necessary files and configs
+FAST5_DIR=$(echo "$(pwd)/tmp_pod5_all")
+DORADO_MODEL=$(echo "$HOME/dna_r9.4.1_e8_sup@v3.6")
+KIT="SQK-PCB111-24"
+BAM="basecalls.bam"
+
+## run dorado basecaller
+$HOME/dorado_0.5.3/bin/dorado basecaller ${DORADO_MODEL} ${FAST5_DIR} --kit-name ${KIT} --barcode-both-ends --device cuda:all > $BAM
+
+## run dorado demultiplexing
+$HOME/dorado_0.5.3/bin/dorado demux --no-classify --output-dir ${OUT_DIR} --emit-fastq $BAM
+
+########################################################################################################################################
 
 # Converting nanopore fast5 data to pod5
 conda activate py39
