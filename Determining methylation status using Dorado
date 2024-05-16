@@ -4,41 +4,41 @@ $ cd /projects/health_sciences/bms/biochemistry/macknight_lab/oliver_stuff/
 
 # This is an example of what your slurm .sh script should look like:
 ########################################################################################################################################
-!/usr/bin/env bash
-
+#!/usr/bin/env bash
+#
 # Job name
-SBATCH --job-name=dorado_rebasecall
-
+#SBATCH --job-name=dorado_rebasecall
+#
 # Account name
-SBATCH --account=macknight
-
+#SBATCH --account=macknight
+#
 # Partition
-SBATCH --partition=aoraki_gpu_A100
-
+#SBATCH --partition=aoraki_gpu_A100
+#
 # Number of tasks per partition
-SBATCH --ntasks-per-node=1
-
+#SBATCH --ntasks-per-node=1
+#
 # Number of GPUs e.g. 2
-SBATCH --gpus-per-node=1
-
+#SBATCH --gpus-per-node=1
+#
 # Memory per GPU
-SBATCH --mem-per-gpu=64GB
-
+#SBATCH --mem-per-gpu=64GB
+#
 # Number of CPUs (e.g 16 cores)
-SBATCH --cpus-per-task=32
-
+#SBATCH --cpus-per-task=32
+#
 # File to save stdout output
-SBATCH --output=slurm_%j.log
-
+#SBATCH --output=slurm_%j.log
+#
 # File to save stderr (Error logfile)
-SBATCH --error=slurm_%j.err
-
+#SBATCH --error=slurm_%j.err
+#
 # Email
-SBATCH --mail-user=ayodele.fakoya@postgrad.otago.ac.nz
-SBATCH --mail-type=END,FAIL
-
+#SBATCH --mail-user=ayodele.fakoya@postgrad.otago.ac.nz
+#SBATCH --mail-type=END,FAIL
+#
 # Time required to run job (hh:mm:ss)
-SBATCH --time=48:00:00
+#SBATCH --time=48:00:00
 
 # Commands go below
 
