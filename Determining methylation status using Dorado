@@ -78,6 +78,8 @@ mkdir tmp_pod5_all
 
 # Then converted all fast5 copies to pod5
 pod5 convert fast5 ./tmp_fast5_oli_purple_011123_test2_2/ --output ./tmp_pod5_oli_purple_011123_test2_2 --one-to-one ./tmp_fast5_oli_purple_011123_test2_2 -t 64
+find ./tmp_pod5_oli_purple_011123_test2_2/ -name "*.pod5" | wc -l
+wc -l tmp_pod5_oli_purple_011123_test2_2/FAX03109_pass_746b7021_ed503dde_0.pod5
 
 # Then basecall the new pod5 files
 # This will output a single fastq file for the entire run; so no need to merge/concatenate hundreds of individual fastq's
