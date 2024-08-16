@@ -1,0 +1,14 @@
+# Rsync Rm and Rld (barcode50 and barcode66, respectively) files to my whiteclover directory in archive
+rsync -aP ./clover_multi8samples/Clover_8sampleMulti/Clover_8sampleMulti_12082024/20240812_1522_P2S-00650-A_PAW22381_ab990672/fastq_pass/barcode50/*.fastq.gz ./white_clover/Rm_whole_genome_seq/all_passed_FastCalled_fastq/
+rsync -aP ./clover_multi8samples/Clover_8sampleMulti/Clover_8sampleMulti_14082024_resume/20240814_1402_P2S-00650-A_PAW22381_c01c169b/fastq_pass/barcode50/*.fastq.gz ./white_clover/Rm_whole_genome_seq/all_passed_FastCalled_fastq/
+rsync -aP ./clover_multi8samples/clover_multi8samples_2/Clover_8sampleMulti_2/Clover_8sampleMulti_14082024/20240814_1418_P2S-00650-A_PAW22381_a7554d4c/fastq_pass/barcode50/*.fastq.gz ./white_clover/Rm_whole_genome_seq/all_passed_FastCalled_fastq/
+
+rsync -aP ./clover_multi8samples/Clover_8sampleMulti/Clover_8sampleMulti_12082024/20240812_1522_P2S-00650-A_PAW22381_ab990672/fastq_pass/barcode66/*.fastq.gz ./white_clover/Rld_whole_genome_seq/all_passed_FastCalled_fastq/
+rsync -aP ./clover_multi8samples/Clover_8sampleMulti/Clover_8sampleMulti_14082024_resume/20240814_1402_P2S-00650-A_PAW22381_c01c169b/fastq_pass/barcode66/*.fastq.gz ./white_clover/Rld_whole_genome_seq/all_passed_FastCalled_fastq/
+rsync -aP ./clover_multi8samples/clover_multi8samples_2/Clover_8sampleMulti_2/Clover_8sampleMulti_14082024/20240814_1418_P2S-00650-A_PAW22381_a7554d4c/fastq_pass/barcode66/*.fastq.gz ./white_clover/Rld_whole_genome_seq/all_passed_FastCalled_fastq/
+
+
+# Merging all Fastcalled Fastq files for Rld and Rm data
+cat ./Rld_whole_genome_seq/all_passed_FastCalled_fastq/*fastq.gz > ./Rld_whole_genome_seq/all_Rld_passed_FastCalled_fastq_merged/all_Rld_FastCalled_passed_merged.fastq.gz
+cat ./Rm_whole_genome_seq/all_passed_FastCalled_fastq/*fastq.gz > ./Rm_whole_genome_seq/all_Rm_passed_FastCalled_fastq_merged/all_Rm_FastCalled_passed_merged.fastq.gz
+
