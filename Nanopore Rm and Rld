@@ -12,3 +12,7 @@ rsync -aP ./clover_multi8samples/clover_multi8samples_2/Clover_8sampleMulti_2/Cl
 cat ./Rld_whole_genome_seq/all_passed_FastCalled_fastq/*fastq.gz > ./Rld_whole_genome_seq/all_Rld_passed_FastCalled_fastq_merged/all_Rld_FastCalled_passed_merged.fastq.gz
 cat ./Rm_whole_genome_seq/all_passed_FastCalled_fastq/*fastq.gz > ./Rm_whole_genome_seq/all_Rm_passed_FastCalled_fastq_merged/all_Rm_FastCalled_passed_merged.fastq.gz
 
+# Filtering and trimming Fast base-called reads
+gunzip -c all_Rld_FastCalled_passed_merged.fastq.gz | NanoFilt -q 10 -l 1000 --headcrop 50 | gzip > filtered_min1kb_min10qScore_all_Rld_FastCalled_merged.fastq.gz
+gunzip -c all_Rm_FastCalled_passed_merged.fastq.gz | NanoFilt -q 10 -l 1000 --headcrop 50 | gzip > filtered_min1kb_min10qScore_all_Rm_FastCalled_merged.fastq.gz
+
