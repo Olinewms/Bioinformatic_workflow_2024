@@ -20,6 +20,7 @@ gunzip -c all_Rm_FastCalled_passed_merged.fastq.gz | NanoFilt -q 10 -l 1000 --he
 vulcan -r /Volumes/archive/userdata/student_users/olivernewman/2023/Reference_genomes/Trifolium_repens/UTM_Trep_v1.0_hap1/ncbi_dataset/data/GCA_030914245.1/GCA_030914245.1_UTM_Trep_v1.0_hap1_genomic.fna -i filtered_min1kb_min10qScore_all_Rm_FastCalled_merged.fastq.gz -w ./vulcan_FastCalled_Rm/ -o vulcan_FastCalled_Rm_against_UTM_Trepv1hap1 -t 64 -ont
 # Processed: 67951 (0.94), R/S: 32.57, RL: 21617, Time: 3.67 1.25 27.14, Align: 0.97, 736, 0.78
 # Done (64100 reads mapped (94.33%), 3851 reads not mapped, 307973 lines written)(elapsed: 34m, 30 r/s)
+samtools index vulcan_FastCalled_Rm_against_UTM_Trepv1hap1.bam
 
 vulcan -r /Volumes/archive/userdata/student_users/olivernewman/2023/Reference_genomes/Trifolium_repens/UTM_Trep_v1.0_hap1/ncbi_dataset/data/GCA_030914245.1/GCA_030914245.1_UTM_Trep_v1.0_hap1_genomic.fna -i filtered_min1kb_min10qScore_all_Rld_FastCalled_merged.fastq.gz -w ./vulcan_FastCalled_Rld/ -o vulcan_FastCalled_Rld_against_UTM_Trepv1hap1 -t 64 -ont
 
