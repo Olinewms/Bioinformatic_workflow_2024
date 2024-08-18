@@ -22,7 +22,7 @@ vulcan -r /Volumes/archive/userdata/student_users/olivernewman/2023/Reference_ge
 # Done (64100 reads mapped (94.33%), 3851 reads not mapped, 307973 lines written)(elapsed: 34m, 30 r/s)
 samtools index vulcan_FastCalled_Rm_against_UTM_Trepv1hap1.bam
 
-vulcan -r /Volumes/archive/userdata/student_users/olivernewman/2023/Reference_genomes/Trifolium_repens/UTM_Trep_v1.0_hap1/ncbi_dataset/data/GCA_030914245.1/GCA_030914245.1_UTM_Trep_v1.0_hap1_genomic.fna -i filtered_min1kb_min10qScore_all_Rld_FastCalled_merged.fastq.gz -w ./vulcan_FastCalled_Rld/ -o vulcan_FastCalled_Rld_against_UTM_Trepv1hap1 -t 64 -ont
+Vulcan -r /Volumes/archive/userdata/student_users/olivernewman/2023/Reference_genomes/Trifolium_repens/UTM_Trep_v1.0_hap1/ncbi_dataset/data/GCA_030914245.1/GCA_030914245.1_UTM_Trep_v1.0_hap1_genomic.fna -i filtered_min1kb_min10qScore_all_Rld_FastCalled_merged.fastq.gz -w ./vulcan_FastCalled_Rld/ -o vulcan_FastCalled_Rld_against_UTM_Trepv1hap1 -t 64 -ont
 # Processed: 51697 (0.93), R/S: 41.15, RL: 18013, Time: 3.69 1.44 24.46, Align: 0.98, 695, 0.79
 # Done (47889 reads mapped (92.63%), 3808 reads not mapped, 209531 lines written)(elapsed: 20m, 38 r/s)
 samtools index vulcan_FastCalled_Rld_against_UTM_Trepv1hap1_90.bam
