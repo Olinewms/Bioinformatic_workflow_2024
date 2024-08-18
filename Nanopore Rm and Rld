@@ -27,5 +27,5 @@ Vulcan -r /Volumes/archive/userdata/student_users/olivernewman/2023/Reference_ge
 # Done (47889 reads mapped (92.63%), 3808 reads not mapped, 209531 lines written)(elapsed: 20m, 38 r/s)
 samtools index vulcan_FastCalled_Rld_against_UTM_Trepv1hap1_90.bam
 
-# After viewing these two alignments together, it was clear that the Rld sequencing was unsufficient (i.e., there was not enough coverage at the R locus; no TrRED LEAF sequence present)
+# After viewing these two alignments together, it was clear that the Rld sequencing was insufficient (i.e., there was not enough coverage at the R locus; no TrRED LEAF sequence present)
 # Therefore I needed to reload the flow cell with new library prep
