@@ -20,3 +20,6 @@ samtools index vulcan_FastCalled_1217_1_no_fleck_against_UTM_Trepv1hap1_90.bam
 # -g is set to 5m as this is roughtly the size of the occidentale genome
 flye --nano-raw ./all_FastCalled_fastq_merged/filtered_min1kb_min10qScore_all_1217_1_NB38_FastCalled_merged.fastq.gz -o ./draft_flye_assembly/1217_1_NB38_no_fleck_draftAssembly -g 5m -t 64 -i 2 --keep-haplotypes
 
+# Attempting to find assembled contigs that contain both ARC6 and MED11 (S locus flanking genes)
+blat ../draft_flye_assembly/1217_1_NB38_no_fleck_draftAssembly/assembly.fasta ARC6.fasta blat_output_ARC6_against_draft_1217_1.txt
+
