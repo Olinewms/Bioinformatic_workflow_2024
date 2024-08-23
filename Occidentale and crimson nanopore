@@ -1,0 +1,22 @@
+# This rsync was done with all 5 of Rowans samples:
+rsync -aP ./clover_multi8samples/clover_multi8samples_2/Clover_8sampleMulti_2/Clover_8sampleMulti_14082024/20240814_1418_P2S-00650-A_PAW22381_a7554d4c/fastq_pass/barcode20/*fastq.gz ./rowan_clover_np/crimson_NB20/all_FastaCalled_fastq/
+
+# Concatenating passed Fast-called .fastq files
+cat ./1211_NB61/all_FastCalled_fastq/*fastq.gz > ./1211_NB61/all_FastCalled_fastq_merged/all_FastCalled_1211_NB61_fastq_merged.fastq.gz
+cat ./1217_1_NB38/all_FastCalled_fastq/*fastq.gz > ./1217_1_NB38/all_FastCalled_fastq_merged/all_FastCalled_1217_1_NB38_fastq_merged.fastq.gz
+cat ./1217_2_NB26/all_FastCalled_fastq/*fastq.gz > ./1217_2_NB26/all_FastCalled_fastq_merged/all_FastCalled_1217_2_NB26_fastq_merged.fastq.gz
+cat ./1221_NB40/all_FastCalled_fastq/*fastq.gz > ./1221_NB40/all_FastCalled_fastq_merged/all_FastCalled_1221_NB40_fastq_merged.fastq.gz
+cat ./crimson_NB20/all_FastCalled_fastq/*fastq.gz > ./crimson_NB20/all_FastCalled_fastq_merged/all_FastCalled_crimson_NB20_fastq_merged.fastq.gz
+
+# Filtering
+gunzip -c 1217_1_NB38_no_fleck/all_FastCalled_fastq_merged/all_FastCalled_1217_1_NB38_fastq_merged.fastq.gz | NanoFilt -q 10 -l 1000 --headcrop 50 | gzip > ./1217_1_NB38_no_fleck/all_FastCalled_fastq_merged/filtered_min1kb_min10qScore_all_1217_1_NB38_FastCalled_merged.fastq.gz
+
+# Vulcan read mapping
+vulcan -r /Volumes/archive/userdata/student_users/olivernewman/2023/Reference_genomes/Trifolium_repens/UTM_Trep_v1.0_hap1/ncbi_dataset/data/GCA_030914245.1/GCA_030914245.1_UTM_Trep_v1.0_hap1_genomic.fna -i filtered_min1kb_min10qScore_all_1217_1_NB38_FastCalled_merged.fastq.gz -w ./vulcan_FastCalled_1217_1_no_fleck/ -o vulcan_FastCalled_1217_1_no_fleck_against_UTM_Trepv1hap1 -t 64 -ont
+samtools index vulcan_FastCalled_1217_1_no_fleck_against_UTM_Trepv1hap1_90.bam
+
+# Flye draft assemblies
+# Note that -i is set to 2 so that only 2 polishing steps are taken to reduce assembly time as this is just a draft to see if the S locus is sequenced
+# -g is set to 5m as this is roughtly the size of the occidentale genome
+flye --nano-raw ./all_FastCalled_fastq_merged/filtered_min1kb_min10qScore_all_1217_1_NB38_FastCalled_merged.fastq.gz -o ./draft_flye_assembly/1217_1_NB38_no_fleck_draftAssembly -g 5m -t 64 -i 2 --keep-haplotypes
+
