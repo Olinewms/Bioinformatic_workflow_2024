@@ -29,3 +29,8 @@ samtools index vulcan_FastCalled_Rld_against_UTM_Trepv1hap1_90.bam
 
 # After viewing these two alignments together, it was clear that the Rld sequencing was insufficient (i.e., there was not enough coverage at the R locus; no TrRED LEAF sequence present)
 # Therefore I needed to reload the flow cell with new library prep
+
+
+makeblastdb -in all_Rld_FastCalled_passed_merged.fasta -dbtype nucl -out blastdb_all_FastCalled_merged
+mv blastdb_all_FastCalled_merged.*  ./db_blastdb_all_Rld_FastCalled_passed/
+blastn -query ../Tr_RED_LEAF_complete_cds.fasta -db ./db_blastdb_all_Rld_FastCalled_passed/blastdb_all_FastCalled_merged -outfmt 6 -num_threads 64 -out blastn_output_MED11_against_unfiltered_reads.txt
