@@ -1,0 +1,12 @@
+# Use dorado basecaller, telling it to SUP basecall and all-context 5mC methylation basecall
+# This gives you a bam file containing MM and ML methylation tags (there it is referred to as a "modbam")
+# Then, give this modbam to samtools to convert it to a fastq whilst retaining MM and ML tags (-TMM,ML), then pipe this fastq to minimap to map it to your Flye assembly of the respective genotype (e.g., Rm).
+samtools fastq -TMM,ML ./pod5_oliver_clover_all/basecalls_Rm_pod5_2024_barcoded.bam | minimap2 -x map-ont -a -t 64 -y --secondary=no ./flye_output_post_porechop/Rm_dorado_porechopped_assembly/assembly.fasta - > Rm_mapped_to_RmFlyeAssembly.bam
+
+# Alternatively, you can carry all the tags from the bam file:
+samtools fastq -T '*' ./pod5_oliver_clover_all/basecalls_Rm_pod5_2024_barcoded.bam | minimap2 -x map-ont -a -t 64 -y --secondary=no ./flye_output_post_porechop/Rm_dorado_porechopped_assembly/assembly.fasta - > Rm_mapped_to_RmFlyeAssembly.bam
+
+# Then use modbam2bed to convert mapped modbam file to a bedfile
+samtools sort Rm_mapped_to_RmFlyeAssembly.bam > Rm_mapped_to_RmFlyeAssembly_sorted.bam
+samtools index Rm_mapped_to_RmFlyeAssembly_sorted.bam
+../modbam2bed/modbam2bed ../flye_output_post_porechop/Rm_dorado_porechopped_assembly/assembly.fasta Rm_mapped_to_RmFlyeAssembly_sorted.bam
