@@ -12,3 +12,10 @@ samtools index Rm_mapped_to_RmFlyeAssembly_sorted.bam
 ../modbam2bed/modbam2bed ../flye_output_post_porechop/Rm_dorado_porechopped_assembly/assembly.fasta Rm_mapped_to_RmFlyeAssembly_sorted.bam
 
 # I am unsure how this is different from making bedMethyl table using modkit pileup...
+
+# Once you have your bedMethyl tables, you can use the following to get a BEDGRAPH file (info taken from https://nanoporetech.com/document/ligation-sequencing-gdna-rrms)
+# Filter reference CpG positions without canonical or modified calls (e.g. deletions from the reference) and genomic positions without calls from both strands
+cat {prefix}_cpg.acc.bed | csvtk filter2 -H -t -f '$11 != "nan" && $6 != "+" && $6 != "-"' > {out_mod_bed_agg_filt}
+
+# Convert the BEDMETHYL file to a BEDGRAPH file that will be used for obtaining the BIGWIG format useful for IGV visualisation
+awk -v OFS='\t' '{print $1,$2,$3,$11}' {out_mod_bed_agg_filt} | sort -k1,1 -k2,2n > {out_mod_bed_agg_filt_bedgraph} bedGraphToBigWig {out_mod_bed_agg_filt_bedgraph} {reference_chrSize} {out_mod_bed_agg_filt_bigwig} 
