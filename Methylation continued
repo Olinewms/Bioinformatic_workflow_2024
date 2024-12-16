@@ -10,3 +10,5 @@ samtools fastq -T '*' ./pod5_oliver_clover_all/basecalls_Rm_pod5_2024_barcoded.b
 samtools sort Rm_mapped_to_RmFlyeAssembly.bam > Rm_mapped_to_RmFlyeAssembly_sorted.bam
 samtools index Rm_mapped_to_RmFlyeAssembly_sorted.bam
 ../modbam2bed/modbam2bed ../flye_output_post_porechop/Rm_dorado_porechopped_assembly/assembly.fasta Rm_mapped_to_RmFlyeAssembly_sorted.bam
+
+# I am unsure how this is different from making bedMethyl table using modkit pileup...
