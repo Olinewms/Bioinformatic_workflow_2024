@@ -19,3 +19,11 @@ cat {prefix}_cpg.acc.bed | csvtk filter2 -H -t -f '$11 != "nan" && $6 != "+" && 
 
 # Convert the BEDMETHYL file to a BEDGRAPH file that will be used for obtaining the BIGWIG format useful for IGV visualisation
 awk -v OFS='\t' '{print $1,$2,$3,$11}' {out_mod_bed_agg_filt} | sort -k1,1 -k2,2n > {out_mod_bed_agg_filt_bedgraph} bedGraphToBigWig {out_mod_bed_agg_filt_bedgraph} {reference_chrSize} {out_mod_bed_agg_filt_bigwig} 
+
+
+### For Rl (R9 chemistry):
+# First index your flye (post-porechop) assembly with minimap2
+minimap2 assembly_Rl.fasta -d assembly_Rl_fasta.idx -I 1.6GB
+
+# Then call guppy, pointing towards your indexed assembly (this needs to be called whilst in the virtual desktop in OnDemand)
+ont-guppy/bin/guppy_basecaller --input_path ~/testdir_purple_Rl_fast5s/ --save_path ./test_guppy_output/ --config ./ont-guppy/data/res_dna_r941_min_modbases-all-context_v001.cfg --align_ref ./flye_output_post_porechop/Rl_dorado_porechopped_assembly/assembly_Rl_fasta.idx --bam_out --num_callers 64
